@@ -1202,13 +1202,6 @@
   <!-- Canvas para partículas de fundo -->
   <canvas id="particles-canvas"></canvas>
 
-  <!-- Botão Secreto de Configurações -->
-  <div class="config-trigger" onclick="toggleConfigModal()" title="Configurações Secretas">
-    <svg viewBox="0 0 24 24">
-      <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.13,5.91,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.67,9.34,2.85,9.48l2.03,1.58C4.83,11.37,4.8,11.69,4.8,12c0,0.31,0.03,0.63,0.08,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
-    </svg>
-  </div>
-
   <!-- Botão Flutuante de Música -->
   <button class="music-player-btn" id="musicBtn" onclick="toggleMusic()" title="Tocar música romântica">
     <svg id="musicSvgPlay" viewBox="0 0 24 24">
@@ -1347,50 +1340,12 @@
     </div>
   </div>
 
-  <!-- MODAL DE CONFIGURAÇÕES -->
-  <div class="config-modal" id="configModal">
-    <div class="config-box">
-      <button class="config-close-btn" onclick="toggleConfigModal()">&times;</button>
-      <h2 class="config-title">⚙ Configurar Página de Aniversário</h2>
-      
-      <div class="config-group">
-        <label for="cfg-wife-name">Nome da Esposa (Ex: Gabriela):</label>
-        <input type="text" id="cfg-wife-name" placeholder="Gabriela">
-      </div>
-      
-      <div class="config-group">
-        <label for="cfg-husband-name">Seu Nome (Assinatura):</label>
-        <input type="text" id="cfg-husband-name" placeholder="João">
-      </div>
-
-      <div class="config-group">
-        <label for="cfg-start-date">Data de Início do Relacionamento:</label>
-        <input type="datetime-local" id="cfg-start-date">
-      </div>
-
-      <div class="config-group">
-        <label for="cfg-music-url">URL da Música (.mp3 ou arquivo de áudio):</label>
-        <input type="text" id="cfg-music-url" placeholder="https://exemplo.com/musica.mp3">
-      </div>
-
-      <div class="config-group">
-        <label for="cfg-letter">Texto da Carta de Amor:</label>
-        <textarea id="cfg-letter" rows="8" placeholder="Escreva sua carta de amor aqui..."></textarea>
-      </div>
-
-      <div class="config-buttons">
-        <button class="config-btn btn-reset" onclick="resetConfig()">Resetar Padrão</button>
-        <button class="config-btn btn-save" onclick="saveConfig()">Salvar e Atualizar</button>
-      </div>
-    </div>
-  </div>
-
   <!-- SCRIPTS -->
   <script>
     // Configurações Padrões da Página
     const DEFAULTS = {
       wifeName: "Gabriela",
-      husbandName: "João",
+      husbandName: "Jeanderson",
       startDate: "2021-02-25T00:00:00",
       musicUrl: "https://assets.mixkit.co/music/preview/mixkit-delicate-keys-1172.mp3",
       letter: "Meu amor, minha oncinha, minha Deusa suprema... 🐯👑 Safada! 😂\n\nHoje eu estava pensando e lembrando de muitos momentos nossos juntos, percebendo o quanto já compartilhamos nessa nossa caminhada. São tantas coisas que nos tornam mais íntimos, onde conhecemos melhor um ao outro... Eu estou tão feliz por estar participando desta data com você, que é uma das mais importantes da minha vida! ❤️\n\nTer começado aquela partida naquele dia foi a melhor coisa que fiz na minha vida, e não ter desistido por causa da distância foi a segunda melhor. 🎮✈️ Você conquistou meu coração, meu caráter e minha alma. Você me ganhou tão fácil que nem imagina... Mas também, branquinha assim, fica difícil resistir! 😏🤌🏻\n\nTe escolher como minha esposa foi uma das melhores decisões da minha vida, e fazer essa escolha todos os dias é o meu maior tesão diário. Eu amo você, meu amor! Na verdade, eu amo todas vocês... 😏🫱🏻🫲🏿 Isso mesmo, quem mandou você ser tão GOSTOSAAAAAAAAAAA?! 🔥😂\n\nObrigado por ser essa maluquinha maravilhosa, minha maluquinha perfeita. Não vejo a hora de dormir e acordar todos os dias ao seu lado, viver o dia inteiro sabendo que nunca mais iremos passar sequer um dia longe um do outro! 🙌🏼\n\nFeliz aniversário, meu amor! Que essa data se repita em nossas vidas por mais de 70 anos. Minha Deusa suprema! 👑❤️✨"
@@ -1419,19 +1374,9 @@
 
     let currentConfig = {};
 
-    // Carregar configurações do localStorage ou usar Padrões
+    // Carregar configurações padrão
     function loadConfig() {
-      const saved = localStorage.getItem('aniver_config_v2');
-      if (saved) {
-        currentConfig = JSON.parse(saved);
-        // Atualizar se a data for a antiga padrão de 2020
-        if (currentConfig.startDate === "2020-01-01T00:00:00") {
-          currentConfig.startDate = DEFAULTS.startDate;
-          localStorage.setItem('aniver_config_v2', JSON.stringify(currentConfig));
-        }
-      } else {
-        currentConfig = { ...DEFAULTS };
-      }
+      currentConfig = { ...DEFAULTS };
 
       // Aplicar configurações na página
       document.getElementById('heroWifeHighlight').textContent = currentConfig.wifeName;
@@ -1453,20 +1398,12 @@
       updateCounter();
     }
 
-    // Renderizar dinamicamente os 18 vídeos em formato Polaroid
+    // Renderizar dinamicamente os vídeos em formato Polaroid
     function renderMemories() {
       const grid = document.getElementById('memoriesGrid');
       grid.innerHTML = '';
 
-      // Recuperar textos editados no localStorage se houver
-      const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
-      const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
-
       MEMORY_VIDEOS.forEach((item, index) => {
-        // Obter os textos finais
-        const titleText = customTitles[index] !== undefined ? customTitles[index] : item.defaultTitle;
-        const descText = customDescs[index] !== undefined ? customDescs[index] : item.defaultDesc;
-
         // Criar elemento da Polaroid
         const card = document.createElement('div');
         card.className = 'polaroid';
@@ -1483,8 +1420,8 @@
             <!-- Usamos data-src para lazy loading de performance e desabilitamos picture-in-picture -->
             <video class="polaroid-vid" loop muted playsinline disablePictureInPicture data-src="${item.src}"></video>
           </div>
-          <div class="polaroid-caption" id="pol-title-${index}" ondblclick="editPolaroidText(event, ${index}, 'title')">${titleText}</div>
-          <div class="polaroid-desc" id="pol-desc-${index}" ondblclick="editPolaroidText(event, ${index}, 'desc')">${descText}</div>
+          <div class="polaroid-caption" id="pol-title-${index}">${item.defaultTitle}</div>
+          <div class="polaroid-desc" id="pol-desc-${index}">${item.defaultDesc}</div>
         `;
 
         grid.appendChild(card);
@@ -1492,30 +1429,6 @@
 
       // Ativar a observação de carregamento e scroll das Polaroids
       initPolaroidObservers();
-    }
-
-    // Edição de texto ao dar dois cliques (facilita personalização rápida)
-    function editPolaroidText(event, index, type) {
-      event.stopPropagation(); // Evita abrir o lightbox
-      
-      const element = event.target;
-      const currentValue = element.textContent;
-      const label = type === 'title' ? 'Título do momento' : 'Descrição do momento';
-      
-      const newValue = prompt(`Editar ${label}:`, currentValue);
-      if (newValue === null) return; // Cancelou
-      
-      if (type === 'title') {
-        const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
-        customTitles[index] = newValue.trim() || MEMORY_VIDEOS[index].defaultTitle;
-        localStorage.setItem('polaroid_custom_titles', JSON.stringify(customTitles));
-        element.textContent = customTitles[index];
-      } else {
-        const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
-        customDescs[index] = newValue.trim() || MEMORY_VIDEOS[index].defaultDesc;
-        localStorage.setItem('polaroid_custom_descs', JSON.stringify(customDescs));
-        element.textContent = customDescs[index];
-      }
     }
 
     // Inicializar os observers de scroll e play/pause de vídeos por performance
@@ -1559,55 +1472,6 @@
       document.querySelectorAll('.declaration-card').forEach(el => {
         scrollObserver.observe(el);
       });
-    }
-
-    // Inicializar inputs do Modal com os valores atuais
-    function initConfigInputs() {
-      document.getElementById('cfg-wife-name').value = currentConfig.wifeName;
-      document.getElementById('cfg-husband-name').value = currentConfig.husbandName;
-      document.getElementById('cfg-start-date').value = currentConfig.startDate.substring(0, 16);
-      document.getElementById('cfg-music-url').value = currentConfig.musicUrl;
-      document.getElementById('cfg-letter').value = currentConfig.letter;
-    }
-
-    // Toggle Modal de Configurações
-    function toggleConfigModal() {
-      const modal = document.getElementById('configModal');
-      modal.classList.toggle('show');
-      if (modal.classList.contains('show')) {
-        initConfigInputs();
-      }
-    }
-
-    // Salvar Configurações
-    function saveConfig() {
-      currentConfig.wifeName = document.getElementById('cfg-wife-name').value || DEFAULTS.wifeName;
-      currentConfig.husbandName = document.getElementById('cfg-husband-name').value || DEFAULTS.husbandName;
-      currentConfig.startDate = document.getElementById('cfg-start-date').value || DEFAULTS.startDate;
-      currentConfig.musicUrl = document.getElementById('cfg-music-url').value || DEFAULTS.musicUrl;
-      currentConfig.letter = document.getElementById('cfg-letter').value || DEFAULTS.letter;
-
-      localStorage.setItem('aniver_config_v2', JSON.stringify(currentConfig));
-      loadConfig();
-      toggleConfigModal();
-
-      // Recarrega áudio de fundo
-      const audio = document.getElementById('romantic-audio');
-      const isPlaying = !audio.paused;
-      if (isPlaying) {
-        audio.play().catch(err => console.log("Erro ao reiniciar áudio: ", err));
-      }
-    }
-
-    // Resetar Configurações ao Padrão
-    function resetConfig() {
-      if (confirm("Deseja realmente redefinir todos os textos e legendas dos vídeos para os padrões originais?")) {
-        localStorage.removeItem('aniver_config_v2');
-        localStorage.removeItem('polaroid_custom_titles');
-        localStorage.removeItem('polaroid_custom_descs');
-        loadConfig();
-        toggleConfigModal();
-      }
     }
 
     // Controle da Música de Fundo
@@ -1774,11 +1638,8 @@
       const title = document.getElementById('lightboxTitle');
       const desc = document.getElementById('lightboxDesc');
 
-      const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
-      const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
-      
-      const finalTitle = customTitles[index] !== undefined ? customTitles[index] : MEMORY_VIDEOS[index].defaultTitle;
-      const finalDesc = customDescs[index] !== undefined ? customDescs[index] : MEMORY_VIDEOS[index].defaultDesc;
+      const finalTitle = MEMORY_VIDEOS[index].defaultTitle;
+      const finalDesc = MEMORY_VIDEOS[index].defaultDesc;
 
       // Pausa a música de fundo enquanto assiste ao vídeo da memória
       const romanticAudio = document.getElementById('romantic-audio');
