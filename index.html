@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário, Minha Amada Esposa! 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa-claro: #FFF0F3;
+      --rosa-medio: #FFB6C1;
+      --rosa-escuro: #FF6B9D;
+      --rosa-profundo: #C44569;
+      --dourado: #FFD700;
+      --dourado-escuro: #E6B800;
+      --branco: #FFFFFF;
+      --texto: #2C3E50;
+      --sombra: rgba(196, 69, 105, 0.15);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--rosa-claro);
+      color: var(--texto);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Scrollbar customizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--rosa-claro);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rosa-medio);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--rosa-escuro);
+    }
+
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Botão de Configurações Secreto */
+    .config-trigger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--rosa-medio);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--sombra);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    .config-trigger:hover {
+      transform: rotate(45deg) scale(1.1);
+      background: var(--branco);
+    }
+    .config-trigger svg {
+      fill: var(--rosa-profundo);
+      width: 22px;
+      height: 22px;
+    }
+
+    /* Botão Flutuante de Música */
+    .music-player-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-profundo));
+      border: none;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(196, 69, 105, 0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .music-player-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(196, 69, 105, 0.5);
+    }
+    .music-player-btn.playing {
+      animation: rotate-music 4s linear infinite;
+    }
+    @keyframes rotate-music {
+      from { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.05); }
+      to { transform: rotate(360deg) scale(1); }
+    }
+    .music-player-btn svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Notificação Toast */
+    .toast-notification {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-left: 4px solid var(--rosa-escuro);
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      z-index: 101;
+      transform: translateY(150px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      font-weight: 500;
+    }
+    .toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: linear-gradient(135deg, #FFF0F3 0%, #FFE4EC 50%, #FFD6E0 100%);
+      z-index: 2;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,182,193,0.25) 0%, transparent 60%);
+      animation: pulse-bg 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse-bg {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.15); opacity: 0.9; }
+    }
+
+    .floating-hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .floating-heart {
+      position: absolute;
+      color: var(--rosa-escuro);
+      font-size: 1.5rem;
+      animation: float-up 8s linear infinite;
+      opacity: 0.6;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.3); opacity: 0; }
+    }
+
+    .hero-content { 
+      position: relative; 
+      z-index: 10; 
+      max-width: 800px;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--rosa-profundo);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 0.5s;
+    }
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: var(--rosa-profundo);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease forwards 1s;
+    }
+    .main-title span {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--rosa-escuro);
+      font-size: 0.85em;
+      margin-top: 5px;
+    }
+    .name-highlight {
+      background: linear-gradient(120deg, var(--rosa-escuro) 0%, var(--rosa-profundo) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      position: relative;
+    }
+    .name-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 5px; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rosa-medio), transparent);
+    }
+    .age-badge {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-profundo));
+      color: white;
+      border-radius: 50px;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(196, 69, 105, 0.35);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 1.5s, glow 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 10px 30px rgba(196, 69, 105, 0.3); }
+      to { box-shadow: 0 10px 40px rgba(196, 69, 105, 0.6), 0 0 25px rgba(255, 107, 157, 0.4); }
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-18px); }
+      60% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* Seção da Carta */
+    .letter-section {
+      padding: 7rem 2rem;
+      background: var(--branco);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Envelope Interativo 3D */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      height: 400px;
+      background-color: var(--rosa-claro);
+      box-shadow: 0 20px 50px rgba(196, 69, 105, 0.15);
+      border-radius: 12px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      margin-top: 2rem;
+      transition: transform 0.5s ease;
+    }
+    .envelope-wrapper:hover {
+      transform: translateY(-5px);
+    }
+    
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #ffd6e0;
+      border-radius: 12px;
+    }
+    .envelope::before {
+      border-top: 200px solid transparent;
+      border-right: 325px solid #ffb6c1;
+      border-bottom: 200px solid #ffb6c1;
+      border-left: 325px solid transparent;
+      border-radius: 0 0 12px 12px;
+      width: 0; height: 0;
+      content: ""; position: absolute; z-index: 5; top: 0; left: 0;
+    }
+    .envelope::after {
+      border-top: 200px solid transparent;
+      border-right: 325px solid transparent;
+      border-bottom: 200px solid #ffa1b2;
+      border-left: 325px solid #ffa1b2;
+      border-radius: 0 0 12px 12px;
+      width: 0; height: 0;
+      content: ""; position: absolute; z-index: 5; top: 0; left: 0;
+    }
+    
+    .flap {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 210px solid #ff8fa3;
+      border-right: 325px solid transparent;
+      border-left: 325px solid transparent;
+      top: 0;
+      left: 0;
+      transform-origin: top;
+      transition: transform 0.6s ease, z-index 0.2s ease 0.4s;
+      z-index: 6;
+      border-radius: 12px 12px 0 0;
+    }
+    
+    /* Selo de Coração */
+    .heart-seal {
+      position: absolute;
+      top: 175px;
+      left: calc(50% - 25px);
+      width: 50px;
+      height: 50px;
+      background-color: var(--rosa-profundo);
+      border-radius: 50%;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+    .heart-seal::before {
+      content: 'Clique Aqui';
+      position: absolute;
+      top: -35px;
+      background: var(--rosa-profundo);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      animation: heartbeat 1.5s infinite;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Carta deslizante */
+    .envelope-card {
+      position: absolute;
+      background: #fffdf9;
+      width: 90%;
+      height: 90%;
+      top: 5%;
+      left: 5%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      z-index: 4;
+      padding: 2.5rem;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.1s ease 0.3s;
+      overflow-y: auto;
+      border: 1px solid #f2e9db;
+      background-image: linear-gradient(rgba(244, 235, 219, 0.3) 1px, transparent 1px);
+      background-size: 100% 28px;
+      line-height: 28px;
+    }
+    
+    .envelope-wrapper.open .flap {
+      transform: rotateX(180deg);
+      z-index: 3;
+    }
+    .envelope-wrapper.open .envelope-card {
+      transform: translateY(-280px) scale(1.03);
+      z-index: 8;
+      height: 480px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    .envelope-wrapper.open .heart-seal {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    .letter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--rosa-profundo);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
+    .letter-text {
+      font-size: 1.15rem;
+      color: var(--texto);
+      text-align: justify;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .letter-text p { 
+      margin-bottom: 1.2rem; 
+      text-indent: 20px;
+    }
+    .signature {
+      text-align: right;
+      margin-top: 2rem;
+      font-family: 'Sacramento', cursive;
+      font-size: 2.5rem;
+      color: var(--rosa-profundo);
+      line-height: 1;
+    }
+
+    /* Seção de Memórias Polaroid */
+    .memories-section {
+      padding: 7rem 2rem;
+      background: linear-gradient(180deg, var(--branco) 0%, var(--rosa-claro) 100%);
+      position: relative;
+      z-index: 2;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-align: center;
+      color: var(--rosa-profundo);
+      margin-bottom: 4rem;
+      font-weight: 700;
+      position: relative;
+    }
+    .section-title::after {
+      content: '❤';
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: var(--rosa-escuro);
+    }
+
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Polaroids Modernas com suporte a Vídeos */
+    .polaroid {
+      background: white;
+      padding: 15px 15px 45px 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #eaeaea;
+      opacity: 0;
+      transform: translateY(50px) rotate(0deg) scale(0.95);
+      transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+                  transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+                  box-shadow 0.4s ease;
+    }
+    
+    .polaroid::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: calc(50% - 40px);
+      width: 80px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(2px);
+      border: 1px dashed rgba(0,0,0,0.05);
+      transform: rotate(-5deg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      z-index: 10;
+    }
+
+    .polaroid.visible {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--rot-angle, 0deg)) scale(1);
+    }
+
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg) translateY(-8px) !important;
+      box-shadow: 0 20px 40px rgba(196, 69, 105, 0.22);
+      z-index: 20;
+    }
+
+    .polaroid-media-wrapper {
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+      border: 1px solid #f0f0f0;
+      border-radius: 2px;
+    }
+    
+    .polaroid-vid {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      background-color: #000;
+      pointer-events: none; /* Desativa PiP nativo, menu do navegador e botões do Chrome */
+    }
+    .polaroid:hover .polaroid-vid {
+      transform: scale(1.06);
+    }
+
+    .polaroid-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      text-align: center;
+      margin-top: 18px;
+      font-size: 1.15rem;
+      color: var(--rosa-profundo);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .polaroid:hover .polaroid-caption {
+      color: var(--rosa-escuro);
+    }
+    
+    .polaroid-desc {
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7f8c8d;
+      margin-top: 6px;
+      line-height: 1.4;
+      padding: 0 5px;
+    }
+
+    /* Modal Lightbox para Fotos e Vídeos */
+    .lightbox-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox-content {
+      background: white;
+      padding: 18px 18px 45px 18px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 88vh;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      transform: scale(0.85);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lightbox-modal.show .lightbox-content {
+      transform: scale(1);
+    }
+    .lightbox-media-wrapper {
+      width: 100%;
+      max-height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+    .lightbox-img, .lightbox-video {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      width: 100%;
+    }
+    .lightbox-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--rosa-profundo);
+      font-size: 1.6rem;
+      margin-top: 20px;
+      font-weight: 700;
+    }
+    .lightbox-desc {
+      font-size: 1rem;
+      color: #555;
+      margin-top: 8px;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 1010;
+    }
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+
+    /* Seção de Razões */
+    .reasons-section {
+      padding: 7rem 2rem;
+      background: var(--rosa-claro);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .reasons-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb6c1' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .reasons-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .declaration-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px var(--sombra);
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      transition: transform 0.4s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .declaration-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .declaration-card:hover {
+      transform: translateY(-5px);
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      color: var(--rosa-medio);
+      line-height: 1;
+      opacity: 0.5;
+      display: block;
+      margin-bottom: -15px;
+    }
+    .declaration-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--texto);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .declaration-text p.final-note {
+      font-style: italic;
+      color: var(--rosa-profundo);
+      margin-bottom: 0;
+    }
+    .read-done-btn {
+      display: block;
+      width: 100%;
+      max-width: 380px;
+      margin: 2.5rem auto 0;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-profundo));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(196,69,105,0.3);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      animation: pulse-button 2s infinite;
+    }
+    @keyframes pulse-button {
+      0% { box-shadow: 0 8px 20px rgba(196,69,105,0.3); }
+      50% { box-shadow: 0 8px 28px rgba(196,69,105,0.5), 0 0 10px rgba(255, 107, 157, 0.3); transform: scale(1.02); }
+      100% { box-shadow: 0 8px 20px rgba(196,69,105,0.3); }
+    }
+    .read-done-btn:hover {
+      background: linear-gradient(135deg, var(--rosa-medio), var(--rosa-escuro));
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(196,69,105,0.4);
+    }
+    .read-done-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Modal de Vídeo Especial ao clicar no botão de leitura */
+    .special-video-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      backdrop-filter: blur(12px);
+    }
+    .special-video-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    .special-video-inner {
+      background: white;
+      padding: 18px 18px 40px 18px;
+      width: 92%;
+      max-width: 550px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 40px rgba(255, 107, 157, 0.2);
+      animation: special-video-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+    @keyframes special-video-entrance {
+      from { transform: scale(0.6) translateY(40px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .special-video-inner video {
+      width: 100%;
+      max-height: 55vh;
+      object-fit: cover;
+      border-radius: 3px;
+      background: #000;
+    }
+    .special-video-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--rosa-profundo);
+      font-size: 1.6rem;
+      margin-top: 18px;
+      font-weight: 700;
+    }
+    .special-video-desc {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      color: #666;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .special-video-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .special-video-close:hover {
+      transform: scale(1.2);
+    }
+    .special-video-continue {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-profundo));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(196,69,105,0.3);
+      transition: all 0.3s ease;
+    }
+    .special-video-continue:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 22px rgba(196,69,105,0.4);
+    }
+
+    /* Seção Final */
+    .final-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--rosa-profundo) 0%, #8B3A5B 100%);
+      color: white;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .final-section::before {
+      content: '';
+      position: absolute;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
+      animation: rotate-bg 30s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotate-bg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .final-content { 
+      position: relative; 
+      z-index: 10; 
+      max-width: 750px;
+    }
+    .final-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .final-message {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      margin: 0 auto 3.5rem;
+      line-height: 1.8;
+      opacity: 0.95;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .heart-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.3rem 3.5rem;
+      background: white;
+      color: var(--rosa-profundo);
+      border: none;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .heart-button:hover {
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    }
+    .heart-button:active { 
+      transform: scale(0.96) translateY(0); 
+    }
+    
+    .love-counter {
+      margin-top: 4.5rem;
+      padding: 2.5rem 3rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .counter-floating-heart {
+      position: absolute;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 5;
+      animation: float-up-counter 2.5s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes float-up-counter {
+      0% {
+        transform: translateY(0) translateX(0) scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.9;
+        transform: translateY(-20px) translateX(calc(var(--target-x) * 0.15)) scale(1.15) rotate(10deg);
+      }
+      100% {
+        transform: translateY(-220px) translateX(var(--target-x)) scale(0.7) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+    .love-counter-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: 1.8rem;
+      font-weight: 600;
+      color: var(--rosa-medio);
+    }
+    .counter-grid {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .counter-item { 
+      text-align: center;
+      min-width: 130px;
+    }
+    .counter-number {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      display: block;
+      color: white;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      font-family: 'Playfair Display', serif;
+    }
+    .counter-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Modal de Configurações do Marido */
+    .config-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .config-modal.show {
+      display: flex;
+    }
+    .config-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 550px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .config-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--rosa-profundo);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
+    .config-group {
+      margin-bottom: 1.2rem;
+    }
+    .config-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--texto);
+    }
+    .config-group input, 
+    .config-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--rosa-medio);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--texto);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .config-group input:focus, 
+    .config-group textarea:focus {
+      border-color: var(--rosa-escuro);
+    }
+    .config-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+    .config-btn {
+      flex: 1;
+      padding: 11px;
+      border: none;
+      border-radius: 30px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-save {
+      background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-profundo));
+      color: white;
+    }
+    .btn-save:hover {
+      box-shadow: 0 5px 15px rgba(196, 69, 105, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-reset {
+      background: #f1f2f6;
+      color: #57606f;
+    }
+    .btn-reset:hover {
+      background: #dfe4ea;
+    }
+    .config-close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #95a5a6;
+    }
+
+    /* Confetti Estilizado */
+    .confetti-piece {
+      position: fixed;
+      width: 10px; height: 10px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .envelope-wrapper {
+        height: 300px;
+      }
+      .envelope::before {
+        border-top: 150px solid transparent;
+        border-right: 250px solid #ffb6c1;
+        border-bottom: 150px solid #ffb6c1;
+        border-left: 250px solid transparent;
+        border-right-width: 175px;
+        border-left-width: 175px;
+      }
+      .envelope::after {
+        border-top: 150px solid transparent;
+        border-right: 250px solid transparent;
+        border-bottom: 150px solid #ffa1b2;
+        border-left: 250px solid #ffa1b2;
+        border-right-width: 175px;
+        border-left-width: 175px;
+      }
+      .flap {
+        border-top: 160px solid #ff8fa3;
+        border-right-width: 175px;
+        border-left-width: 175px;
+      }
+      .envelope-card {
+        padding: 1.5rem;
+        font-size: 1rem;
+        line-height: 24px;
+        background-size: 100% 24px;
+      }
+      .envelope-wrapper.open .envelope-card {
+        transform: translateY(-200px) scale(1.02);
+        height: 380px;
+      }
+      .heart-seal {
+        top: 125px;
+      }
+      .memories-grid {
+        gap: 3.5rem;
+      }
+      .love-counter {
+        padding: 1.8rem 1.2rem;
+      }
+      .counter-grid {
+        gap: 1.2rem;
+      }
+      .counter-item {
+        min-width: 110px;
+        flex: 1 1 calc(50% - 15px); /* Organiza em grade 2x2 harmoniosa no mobile */
+      }
+      .declaration-card {
+        padding: 2rem 1.5rem;
+      }
+      .declaration-text p {
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+      .quote-mark {
+        font-size: 3.2rem;
+      }
+    }
+
+    /* Otimização de responsividade extra para telas de celulares menores */
+    @media (max-width: 480px) {
+      .envelope-wrapper {
+        transform: scale(0.8);
+        margin-top: 0px;
+        margin-bottom: -40px;
+      }
+      .envelope-wrapper:hover {
+        transform: scale(0.82) translateY(-5px) !important;
+      }
+      .memories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2.5rem;
+      }
+      .polaroid {
+        padding: 12px 12px 35px 12px;
+      }
+      .polaroid-media-wrapper {
+        height: 200px;
+      }
+      .declaration-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+      }
+      .declaration-text p {
+        font-size: 0.98rem;
+        line-height: 1.55;
+        margin-bottom: 1.2rem;
+      }
+      .read-done-btn {
+        margin-top: 1.8rem;
+        font-size: 1rem;
+        padding: 0.85rem 1.5rem;
+      }
+    }
+    @media (max-width: 380px) {
+      .envelope-wrapper {
+        transform: scale(0.66);
+        margin-top: -20px;
+        margin-bottom: -80px;
+      }
+      .envelope-wrapper:hover {
+        transform: scale(0.68) translateY(-5px) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elemento de Áudio Oculto -->
+  <audio id="romantic-audio" loop></audio>
+
+  <!-- Canvas para partículas de fundo -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Botão Secreto de Configurações -->
+  <div class="config-trigger" onclick="toggleConfigModal()" title="Configurações Secretas">
+    <svg viewBox="0 0 24 24">
+      <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.13,5.91,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.67,9.34,2.85,9.48l2.03,1.58C4.83,11.37,4.8,11.69,4.8,12c0,0.31,0.03,0.63,0.08,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+    </svg>
+  </div>
+
+  <!-- Botão Flutuante de Música -->
+  <button class="music-player-btn" id="musicBtn" onclick="toggleMusic()" title="Tocar música romântica">
+    <svg id="musicSvgPlay" viewBox="0 0 24 24">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+    </svg>
+  </button>
+
+  <!-- Notificação Toast -->
+  <div class="toast-notification" id="musicToast">
+    Música romântica ativada! 💖
+  </div>
+
+  <!-- SEÇÃO HERO -->
+  <section class="hero" id="hero">
+    <div class="floating-hearts" id="floating-hearts"></div>
+    <div class="hero-content">
+      <p class="subtitle" id="heroSubtitle">Hoje é um dia especial</p>
+      <h1 class="main-title">
+        Feliz Aniversário
+        <span>Minha amada <span class="name-highlight" id="heroWifeHighlight">esposa</span></span>
+      </h1>
+      <div class="age-badge" id="heroBadge">🎂 22 Anos de Pura Magia ✨</div>
+    </div>
+    <div class="scroll-indicator" onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C44569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SEÇÃO CARTA DE AMOR (Envelope Interativo) -->
+  <section class="letter-section" id="letter">
+    <div class="section-title">Um Presente do Coração</div>
+    
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="heart-seal">❤</div>
+        <div class="envelope-card">
+          <h2 class="letter-title" id="letterTitle">Para Minha Gabriela</h2>
+          <div class="letter-text" id="letterTextBody">
+            <!-- Conteúdo carregado dinamicamente -->
+          </div>
+          <div class="signature" id="letterSignature">
+            Com todo o meu amor, João 💕
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO MEMÓRIAS (Polaroid Grid com vídeos do WhatsApp) -->
+  <section class="memories-section" id="memories">
+    <h2 class="section-title">Nossos Momentos Especiais</h2>
+    <div class="memories-grid" id="memoriesGrid">
+      <!-- Gerado dinamicamente via Javascript -->
+    </div>
+  </section>
+
+  <!-- SEÇÃO DECLARAÇÃO -->
+  <section class="reasons-section" id="reasons">
+    <div class="reasons-container">
+      <h2 class="section-title">O Que Sinto Por Você</h2>
+      
+      <div class="declaration-card" id="declarationCard">
+        <span class="quote-mark">“</span>
+        <div class="declaration-text">
+          <p>Eu perco a linha de raciocínio quando penso em você... Quer dizer, ela até continua, mas o seu olhar fica preso no meu ser. Eu sei que você acha isso meio idiota, mas, sinceramente, o seu olhar... eu ficaria admirando por horas! 👀💖</p>
+          <p>Eu gosto de você, gosto de ficar com você, meu riso é tão feliz contigo... o meu melhor amigo é o meu amor. 👩‍❤️‍👨✨</p>
+          <p class="final-note">E se você for parar para analisar, nenhuma letra dessa frase rimou... mesmo assim, é uma das mais conhecidas músicas de amor. 🎶❤️</p>
+        </div>
+        <span class="quote-mark" style="text-align: right; display: block; margin-top: -20px;">”</span>
+        
+        <button class="read-done-btn" id="doneReadingBtn" onclick="finishReading(event)">
+          Só clique quando terminar de ler 🥺👉👈
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE VÍDEO ESPECIAL -->
+  <div class="special-video-modal" id="specialVideoModal">
+    <div class="special-video-inner">
+      <span class="special-video-close" onclick="closeSpecialVideo()">&times;</span>
+      <video id="specialVideo" loop muted playsinline disablePictureInPicture style="pointer-events: none;"></video>
+      <h3 class="special-video-title">Mais de 70 Anos</h3>
+      <p class="special-video-desc">Envelhecer ao seu lado e fazer cada segundo valer a pena.</p>
+      <button class="special-video-continue" onclick="closeSpecialVideo()">Continuar ❤️</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO FINAL -->
+  <section class="final-section" id="final">
+    <div class="final-content">
+      <h2 class="final-title" id="finalTitle">Feliz Aniversário, Meu Amor! 🎉</h2>
+      <p class="final-message" id="finalMessage">Que este dia seja tão especial quanto você é para mim. Obrigado por existir e por fazer da minha vida a história de amor mais linda.</p>
+      
+      <button class="heart-button" id="loveButton" onclick="explodeHeartsAndSounds()">
+        <span>❤️</span> Clique Aqui, Meu Amor
+      </button>
+
+      <div class="love-counter">
+        <p class="love-counter-title">Nosso Amor em Números</p>
+        <div class="counter-grid">
+          <div class="counter-item">
+            <span class="counter-number" id="days-counter">0</span>
+            <span class="counter-label">Dias Juntos</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-number" id="hours-counter">0</span>
+            <span class="counter-label">Horas de Amor</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-number" id="minutes-counter">0</span>
+            <span class="counter-label">Minutos de Felicidade</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-number" id="seconds-counter">0</span>
+            <span class="counter-label">Segundos de Paixão</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL LIGHTBOX (Exibição de Polaroid ampliada com suporte a vídeo) -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <div class="lightbox-media-wrapper">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Ampliada" style="display: none;">
+        <video class="lightbox-video" id="lightboxVid" controls loop playsinline style="display: none;"></video>
+      </div>
+      <div class="lightbox-title" id="lightboxTitle">Título do momento</div>
+      <div class="lightbox-desc" id="lightboxDesc">Descrição do momento</div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIGURAÇÕES -->
+  <div class="config-modal" id="configModal">
+    <div class="config-box">
+      <button class="config-close-btn" onclick="toggleConfigModal()">&times;</button>
+      <h2 class="config-title">⚙ Configurar Página de Aniversário</h2>
+      
+      <div class="config-group">
+        <label for="cfg-wife-name">Nome da Esposa (Ex: Gabriela):</label>
+        <input type="text" id="cfg-wife-name" placeholder="Gabriela">
+      </div>
+      
+      <div class="config-group">
+        <label for="cfg-husband-name">Seu Nome (Assinatura):</label>
+        <input type="text" id="cfg-husband-name" placeholder="João">
+      </div>
+
+      <div class="config-group">
+        <label for="cfg-start-date">Data de Início do Relacionamento:</label>
+        <input type="datetime-local" id="cfg-start-date">
+      </div>
+
+      <div class="config-group">
+        <label for="cfg-music-url">URL da Música (.mp3 ou arquivo de áudio):</label>
+        <input type="text" id="cfg-music-url" placeholder="https://exemplo.com/musica.mp3">
+      </div>
+
+      <div class="config-group">
+        <label for="cfg-letter">Texto da Carta de Amor:</label>
+        <textarea id="cfg-letter" rows="8" placeholder="Escreva sua carta de amor aqui..."></textarea>
+      </div>
+
+      <div class="config-buttons">
+        <button class="config-btn btn-reset" onclick="resetConfig()">Resetar Padrão</button>
+        <button class="config-btn btn-save" onclick="saveConfig()">Salvar e Atualizar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Configurações Padrões da Página
+    const DEFAULTS = {
+      wifeName: "Gabriela",
+      husbandName: "João",
+      startDate: "2021-02-25T00:00:00",
+      musicUrl: "https://assets.mixkit.co/music/preview/mixkit-delicate-keys-1172.mp3",
+      letter: "Meu amor, minha oncinha, minha Deusa suprema... 🐯👑 Safada! 😂\n\nHoje eu estava pensando e lembrando de muitos momentos nossos juntos, percebendo o quanto já compartilhamos nessa nossa caminhada. São tantas coisas que nos tornam mais íntimos, onde conhecemos melhor um ao outro... Eu estou tão feliz por estar participando desta data com você, que é uma das mais importantes da minha vida! ❤️\n\nTer começado aquela partida naquele dia foi a melhor coisa que fiz na minha vida, e não ter desistido por causa da distância foi a segunda melhor. 🎮✈️ Você conquistou meu coração, meu caráter e minha alma. Você me ganhou tão fácil que nem imagina... Mas também, branquinha assim, fica difícil resistir! 😏🤌🏻\n\nTe escolher como minha esposa foi uma das melhores decisões da minha vida, e fazer essa escolha todos os dias é o meu maior tesão diário. Eu amo você, meu amor! Na verdade, eu amo todas vocês... 😏🫱🏻🫲🏿 Isso mesmo, quem mandou você ser tão GOSTOSAAAAAAAAAAA?! 🔥😂\n\nObrigado por ser essa maluquinha maravilhosa, minha maluquinha perfeita. Não vejo a hora de dormir e acordar todos os dias ao seu lado, viver o dia inteiro sabendo que nunca mais iremos passar sequer um dia longe um do outro! 🙌🏼\n\nFeliz aniversário, meu amor! Que essa data se repita em nossas vidas por mais de 70 anos. Minha Deusa suprema! 👑❤️✨"
+    };
+
+    // Coleção de Vídeos do WhatsApp (15 arquivos) com Legendas Românticas Padrão
+    const MEMORY_VIDEOS = [
+      { src: "public/WhatsApp Video 2026-07-07 at 23.31.40.mp4", defaultTitle: "Amor e Sintonia", defaultDesc: "Aqueles olhares que se cruzam e dizem tudo, sem precisar de palavras." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.15.mp4", defaultTitle: "Doce Abraço", defaultDesc: "O abrigo mais aconchegante e seguro do universo inteiro." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.15 (1).mp4", defaultTitle: "Momento Lindo", defaultDesc: "Qualquer lugar se torna incrível quando estou de mãos dadas com você." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.15 (2).mp4", defaultTitle: "Te Amo Tanto", defaultDesc: "Meu peito transborda de alegria a cada segundo contigo." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.15 (3).mp4", defaultTitle: "Minha Oncinha", defaultDesc: "Esse seu jeito carinhoso e safado que me conquista todo dia. 🐯" },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.16.mp4", defaultTitle: "Minha Paz Diária", defaultDesc: "Nosso amor é a calmaria perfeita no meio de qualquer correria." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.16 (1).mp4", defaultTitle: "Cumplicidade Pura", defaultDesc: "Construindo uma linda história juntos, passo a passo, dia após dia." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.16 (2).mp4", defaultTitle: "Sorrisos Nossos", defaultDesc: "Não há dia cinza quando tenho o brilho dos seus olhos por perto." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.17.mp4", defaultTitle: "Nossos Sonhos", defaultDesc: "Toda a constelação de planos lindos que estamos realizando." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.17 (1).mp4", defaultTitle: "Minha Esposa Linda", defaultDesc: "A decisão mais feliz e certeira de toda a minha vida." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.18.mp4", defaultTitle: "Minha Metade", defaultDesc: "Duas almas que se encontraram na partida mais sortuda do mundo." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.33.18 (1).mp4", defaultTitle: "Loucuras com Você", defaultDesc: "Obrigado por ser essa maluquinha perfeita, a parceira ideal de vida." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.51.17.mp4", defaultTitle: "Eternamente Meu Amor", defaultDesc: "Te escolher todos os dias é o meu maior prazer e privilégio." },
+      { src: "public/WhatsApp Video 2026-07-07 at 23.51.18.mp4", defaultTitle: "Deusa Suprema", defaultDesc: "Quem mandou ser a mulher mais gostosa do planeta?! 🔥👑" }
+    ];
+
+    // Vídeo especial que aparece ao clicar no botão de leitura
+    const SPECIAL_VIDEO_SRC = "public/WhatsApp Video 2026-07-07 at 23.51.18 (2).mp4";
+
+    let currentConfig = {};
+
+    // Carregar configurações do localStorage ou usar Padrões
+    function loadConfig() {
+      const saved = localStorage.getItem('aniver_config_v2');
+      if (saved) {
+        currentConfig = JSON.parse(saved);
+        // Atualizar se a data for a antiga padrão de 2020
+        if (currentConfig.startDate === "2020-01-01T00:00:00") {
+          currentConfig.startDate = DEFAULTS.startDate;
+          localStorage.setItem('aniver_config_v2', JSON.stringify(currentConfig));
+        }
+      } else {
+        currentConfig = { ...DEFAULTS };
+      }
+
+      // Aplicar configurações na página
+      document.getElementById('heroWifeHighlight').textContent = currentConfig.wifeName;
+      document.getElementById('letterTitle').textContent = `Para Minha ${currentConfig.wifeName}`;
+      
+      const formattedLetter = currentConfig.letter.split('\n\n').map(p => `<p>${p}</p>`).join('');
+      document.getElementById('letterTextBody').innerHTML = formattedLetter;
+      
+      document.getElementById('letterSignature').innerHTML = `Com todo o meu amor,<br>${currentConfig.husbandName} 💕`;
+      document.getElementById('finalTitle').textContent = `Feliz Aniversário, Minha ${currentConfig.wifeName}! 🎉`;
+      
+      const audio = document.getElementById('romantic-audio');
+      audio.src = currentConfig.musicUrl;
+
+      // Renderizar o mural de Polaroids
+      renderMemories();
+
+      // Atualizar o cronômetro de amor
+      updateCounter();
+    }
+
+    // Renderizar dinamicamente os 18 vídeos em formato Polaroid
+    function renderMemories() {
+      const grid = document.getElementById('memoriesGrid');
+      grid.innerHTML = '';
+
+      // Recuperar textos editados no localStorage se houver
+      const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
+      const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
+
+      MEMORY_VIDEOS.forEach((item, index) => {
+        // Obter os textos finais
+        const titleText = customTitles[index] !== undefined ? customTitles[index] : item.defaultTitle;
+        const descText = customDescs[index] !== undefined ? customDescs[index] : item.defaultDesc;
+
+        // Criar elemento da Polaroid
+        const card = document.createElement('div');
+        card.className = 'polaroid';
+        
+        // Atribuir rotação aleatória via CSS Custom Property para parecer jogada sobre a mesa
+        const rotationAngle = (Math.random() * 8 - 4).toFixed(2); // Entre -4deg e 4deg
+        card.style.setProperty('--rot-angle', `${rotationAngle}deg`);
+
+        // Evento de clique para o modal
+        card.setAttribute('onclick', `openLightbox(${index})`);
+
+        card.innerHTML = `
+          <div class="polaroid-media-wrapper">
+            <!-- Usamos data-src para lazy loading de performance e desabilitamos picture-in-picture -->
+            <video class="polaroid-vid" loop muted playsinline disablePictureInPicture data-src="${item.src}"></video>
+          </div>
+          <div class="polaroid-caption" id="pol-title-${index}" ondblclick="editPolaroidText(event, ${index}, 'title')">${titleText}</div>
+          <div class="polaroid-desc" id="pol-desc-${index}" ondblclick="editPolaroidText(event, ${index}, 'desc')">${descText}</div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Ativar a observação de carregamento e scroll das Polaroids
+      initPolaroidObservers();
+    }
+
+    // Edição de texto ao dar dois cliques (facilita personalização rápida)
+    function editPolaroidText(event, index, type) {
+      event.stopPropagation(); // Evita abrir o lightbox
+      
+      const element = event.target;
+      const currentValue = element.textContent;
+      const label = type === 'title' ? 'Título do momento' : 'Descrição do momento';
+      
+      const newValue = prompt(`Editar ${label}:`, currentValue);
+      if (newValue === null) return; // Cancelou
+      
+      if (type === 'title') {
+        const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
+        customTitles[index] = newValue.trim() || MEMORY_VIDEOS[index].defaultTitle;
+        localStorage.setItem('polaroid_custom_titles', JSON.stringify(customTitles));
+        element.textContent = customTitles[index];
+      } else {
+        const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
+        customDescs[index] = newValue.trim() || MEMORY_VIDEOS[index].defaultDesc;
+        localStorage.setItem('polaroid_custom_descs', JSON.stringify(customDescs));
+        element.textContent = customDescs[index];
+      }
+    }
+
+    // Inicializar os observers de scroll e play/pause de vídeos por performance
+    function initPolaroidObservers() {
+      // 1. Observer para revelar os cards com animação (Fly-in)
+      const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.05 });
+
+      // 2. Observer de performance para Lazy Load de vídeos
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target.querySelector('video');
+          if (!video) return;
+
+          if (entry.isIntersecting) {
+            // Lazy load: Carrega a fonte apenas quando o card estiver próximo de aparecer
+            if (!video.src) {
+              video.src = video.dataset.src;
+            }
+            // Toca o vídeo em loop mutado
+            video.play().catch(err => console.log("Auto-play suspenso temporariamente: ", err));
+          } else {
+            // Pausa o vídeo se sair da tela para poupar CPU/Memória
+            video.pause();
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "150px 0px" });
+
+      // Observar cada Polaroid criada
+      document.querySelectorAll('.polaroid').forEach(el => {
+        scrollObserver.observe(el);
+        videoObserver.observe(el);
+      });
+
+      // Observar também o cartão de declaração
+      document.querySelectorAll('.declaration-card').forEach(el => {
+        scrollObserver.observe(el);
+      });
+    }
+
+    // Inicializar inputs do Modal com os valores atuais
+    function initConfigInputs() {
+      document.getElementById('cfg-wife-name').value = currentConfig.wifeName;
+      document.getElementById('cfg-husband-name').value = currentConfig.husbandName;
+      document.getElementById('cfg-start-date').value = currentConfig.startDate.substring(0, 16);
+      document.getElementById('cfg-music-url').value = currentConfig.musicUrl;
+      document.getElementById('cfg-letter').value = currentConfig.letter;
+    }
+
+    // Toggle Modal de Configurações
+    function toggleConfigModal() {
+      const modal = document.getElementById('configModal');
+      modal.classList.toggle('show');
+      if (modal.classList.contains('show')) {
+        initConfigInputs();
+      }
+    }
+
+    // Salvar Configurações
+    function saveConfig() {
+      currentConfig.wifeName = document.getElementById('cfg-wife-name').value || DEFAULTS.wifeName;
+      currentConfig.husbandName = document.getElementById('cfg-husband-name').value || DEFAULTS.husbandName;
+      currentConfig.startDate = document.getElementById('cfg-start-date').value || DEFAULTS.startDate;
+      currentConfig.musicUrl = document.getElementById('cfg-music-url').value || DEFAULTS.musicUrl;
+      currentConfig.letter = document.getElementById('cfg-letter').value || DEFAULTS.letter;
+
+      localStorage.setItem('aniver_config_v2', JSON.stringify(currentConfig));
+      loadConfig();
+      toggleConfigModal();
+
+      // Recarrega áudio de fundo
+      const audio = document.getElementById('romantic-audio');
+      const isPlaying = !audio.paused;
+      if (isPlaying) {
+        audio.play().catch(err => console.log("Erro ao reiniciar áudio: ", err));
+      }
+    }
+
+    // Resetar Configurações ao Padrão
+    function resetConfig() {
+      if (confirm("Deseja realmente redefinir todos os textos e legendas dos vídeos para os padrões originais?")) {
+        localStorage.removeItem('aniver_config_v2');
+        localStorage.removeItem('polaroid_custom_titles');
+        localStorage.removeItem('polaroid_custom_descs');
+        loadConfig();
+        toggleConfigModal();
+      }
+    }
+
+    // Controle da Música de Fundo
+    function toggleMusic() {
+      const audio = document.getElementById('romantic-audio');
+      const btn = document.getElementById('musicBtn');
+      const toast = document.getElementById('musicToast');
+
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.classList.add('playing');
+          toast.textContent = "Música romântica tocando... 💖";
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        }).catch(err => {
+          console.log("Início de áudio necessita interação direta.", err);
+          toast.textContent = "Clique novamente para tocar áudio! 🎵";
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 3000);
+        });
+      } else {
+        audio.pause();
+        btn.classList.remove('playing');
+        toast.textContent = "Música pausada 🔇";
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+    }
+
+    // Envelope Abrir/Fechar
+    function openEnvelope() {
+      const wrapper = document.getElementById('envelopeWrapper');
+      wrapper.classList.toggle('open');
+      
+      if (wrapper.classList.contains('open')) {
+        playMagicalChime(400, 800, 0.1, 0.4);
+      }
+    }
+
+    // Ação ao terminar de ler a declaração
+    function finishReading(event) {
+      event.preventDefault();
+      
+      // Som de confirmação mágico
+      playMagicalChime(450, 1050, 0.4, 0.25);
+      
+      // Explosão de corações ao redor do botão clicado
+      const btn = document.getElementById('doneReadingBtn');
+      const rect = btn.getBoundingClientRect();
+      
+      for (let i = 0; i < 20; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.textContent = '❤️';
+        el.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
+        el.style.top = (rect.top + rect.height / 2 + window.scrollY) + 'px';
+        el.style.fontSize = (Math.random() * 16 + 10) + 'px';
+        document.body.appendChild(el);
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 160 + 60;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity - 60;
+        
+        let x = rect.left + rect.width / 2 + window.scrollX;
+        let y = rect.top + rect.height / 2 + window.scrollY;
+        let opacity = 1;
+
+        const anim = setInterval(() => {
+          x += vx * 0.02;
+          y += vy * 0.02 + 1;
+          opacity -= 0.02;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.opacity = opacity;
+          if (opacity <= 0) {
+            clearInterval(anim);
+            el.remove();
+          }
+        }, 16);
+      }
+
+      // Abrir o modal de vídeo especial após a explosão de corações
+      setTimeout(() => {
+        openSpecialVideo();
+      }, 400);
+    }
+
+    // Abrir o modal do vídeo especial
+    function openSpecialVideo() {
+      const modal = document.getElementById('specialVideoModal');
+      const video = document.getElementById('specialVideo');
+      
+      // Carregar o vídeo
+      video.src = SPECIAL_VIDEO_SRC;
+      
+      // Mostrar o modal
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('show'), 10);
+      
+      // Tocar o vídeo em loop
+      video.play().catch(err => console.log('Autoplay bloqueado:', err));
+      
+      // Pausar a música de fundo durante o vídeo especial
+      const audio = document.getElementById('romantic-audio');
+      if (!audio.paused) {
+        audio.pause();
+        window.wasMusicPlayingBeforeSpecial = true;
+      }
+      
+      // Tocar o áudio especial (AUDEO.mpeg) imediatamente
+      if (!window.specialAudio) {
+        window.specialAudio = new Audio('public/AUDEO.mpeg');
+      }
+      window.specialAudio.currentTime = 0;
+      window.specialAudio.play().catch(err => console.log('Erro ao tocar áudio especial:', err));
+      
+      // Bloquear scroll no body
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Fechar o modal do vídeo especial
+    function closeSpecialVideo() {
+      const modal = document.getElementById('specialVideoModal');
+      const video = document.getElementById('specialVideo');
+      
+      modal.classList.remove('show');
+      
+      // Parar o áudio especial
+      if (window.specialAudio) {
+        window.specialAudio.pause();
+        window.specialAudio.currentTime = 0;
+      }
+      
+      setTimeout(() => {
+        modal.style.display = 'none';
+        video.pause();
+        video.src = '';
+        
+        // Restaurar a música de fundo
+        if (window.wasMusicPlayingBeforeSpecial) {
+          const audio = document.getElementById('romantic-audio');
+          audio.play().catch(err => console.log('Erro ao retomar áudio:', err));
+          window.wasMusicPlayingBeforeSpecial = false;
+        }
+        
+        // Desbloquear scroll
+        document.body.style.overflow = '';
+        
+        // Rolar suavemente até a seção final
+        setTimeout(() => {
+          document.getElementById('final').scrollIntoView({ behavior: 'smooth' });
+        }, 200);
+      }, 500);
+    }
+
+    // Exibição no Modal Lightbox (Suporta Foto e Vídeo)
+    window.wasPlayingMusicBeforeLightbox = false;
+
+    function openLightbox(index) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const video = document.getElementById('lightboxVid');
+      const title = document.getElementById('lightboxTitle');
+      const desc = document.getElementById('lightboxDesc');
+
+      const customTitles = JSON.parse(localStorage.getItem('polaroid_custom_titles') || '{}');
+      const customDescs = JSON.parse(localStorage.getItem('polaroid_custom_descs') || '{}');
+      
+      const finalTitle = customTitles[index] !== undefined ? customTitles[index] : MEMORY_VIDEOS[index].defaultTitle;
+      const finalDesc = customDescs[index] !== undefined ? customDescs[index] : MEMORY_VIDEOS[index].defaultDesc;
+
+      // Pausa a música de fundo enquanto assiste ao vídeo da memória
+      const romanticAudio = document.getElementById('romantic-audio');
+      window.wasPlayingMusicBeforeLightbox = !romanticAudio.paused;
+      if (window.wasPlayingMusicBeforeLightbox) {
+        romanticAudio.pause();
+        document.getElementById('musicBtn').classList.remove('playing');
+      }
+
+      // Oculta imagem e exibe vídeo no lightbox
+      img.style.display = 'none';
+      video.style.display = 'block';
+      
+      // Carrega e reproduz o vídeo correspondente (com áudio!)
+      video.src = MEMORY_VIDEOS[index].src;
+      video.load();
+      video.play().catch(err => console.log("Erro ao reproduzir vídeo do modal: ", err));
+
+      title.textContent = finalTitle;
+      desc.textContent = finalDesc;
+
+      modal.classList.add('show');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      const video = document.getElementById('lightboxVid');
+      
+      modal.classList.remove('show');
+
+      // Interrompe o vídeo do modal
+      video.pause();
+      video.src = '';
+
+      // Retoma a música de fundo se ela já estava tocando antes
+      if (window.wasPlayingMusicBeforeLightbox) {
+        const romanticAudio = document.getElementById('romantic-audio');
+        romanticAudio.play().then(() => {
+          document.getElementById('musicBtn').classList.add('playing');
+        }).catch(err => console.log("Retorno de áudio bloqueado: ", err));
+      }
+    }
+
+    // Cronômetro do Amor em Tempo Real
+    let lastSeconds = -1;
+
+    function updateCounter() {
+      const now = new Date();
+      const start = new Date(currentConfig.startDate);
+      const diff = now - start;
+
+      if (isNaN(diff) || diff < 0) {
+        document.getElementById('days-counter').textContent = "0";
+        document.getElementById('hours-counter').textContent = "0";
+        document.getElementById('minutes-counter').textContent = "0";
+        document.getElementById('seconds-counter').textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor(diff / (1000 * 60));
+      
+      // Deixar somente os segundos para se formar 1 minuto (0 a 59)
+      const secondsVal = Math.floor(diff / 1000);
+      const seconds = secondsVal % 60;
+
+      document.getElementById('days-counter').textContent = days.toLocaleString('pt-BR');
+      document.getElementById('hours-counter').textContent = hours.toLocaleString('pt-BR');
+      document.getElementById('minutes-counter').textContent = minutes.toLocaleString('pt-BR');
+      document.getElementById('seconds-counter').textContent = seconds.toString().padStart(2, '0');
+
+      // A cada segundo, se o segundo mudou, sobe um coraçãosinho
+      if (lastSeconds !== -1 && seconds !== lastSeconds) {
+        spawnCounterHeart(false);
+
+        // Quando fechar mais 1 minuto (segundos voltou para 0)
+        if (seconds === 0 && lastSeconds === 59) {
+          // Tocar efeito sonoro fofinho
+          playCutePopSound();
+          
+          // Enxurrada de corações! Aumentado para 48 corações espalhados por 3.5 segundos
+          for (let i = 0; i < 48; i++) {
+            setTimeout(() => spawnCounterHeart(true), i * 75);
+          }
+        }
+      }
+      lastSeconds = seconds;
+    }
+
+    // Efeito sonoro fofinho sintetizado
+    function playCutePopSound() {
+      // Dois tons rápidos ascendentes de flauta/bolha (Dó e Sol agudos)
+      playMagicalChime(580, 1160, 0.15, 0.25);
+      setTimeout(() => playMagicalChime(880, 1760, 0.2, 0.20), 80);
+    }
+
+    // Função para subir corações do painel de contadores
+    function spawnCounterHeart(isEnxurrada) {
+      const counter = document.querySelector('.love-counter');
+      if (!counter) return;
+
+      const heart = document.createElement('div');
+      heart.className = 'counter-floating-heart';
+      
+      const hearts = ['❤️', '💖', '💕', '💗', '💝', '💘'];
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      
+      // Posiciona horizontalmente aleatório na largura do container
+      const leftPercent = Math.random() * 80 + 10; // 10% a 90%
+      heart.style.left = `${leftPercent}%`;
+      
+      // Se for enxurrada, a flutuação dura mais tempo (4.2 a 5.0 segundos)
+      const duration = isEnxurrada ? (Math.random() * 0.8 + 4.2) : 2.5; 
+      const scale = isEnxurrada ? (Math.random() * 0.7 + 0.6) : 1.0;
+      
+      heart.style.animationDuration = `${duration}s`;
+      heart.style.fontSize = `${scale}rem`;
+      
+      // Deslocamento horizontal aleatório
+      const targetX = isEnxurrada ? (Math.random() * 120 - 60) : (Math.random() * 40 - 20);
+      heart.style.setProperty('--target-x', `${targetX}px`);
+
+      counter.appendChild(heart);
+      
+      // Remove após a animação
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    // Efeitos de Som Mágicos por Web Audio API (Chime)
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playMagicalChime(startFreq = 440, endFreq = 880, duration = 0.3, volume = 0.2) {
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        const osc = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + duration);
+
+        gainNode.gain.setValueAtTime(volume, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+        osc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.log("Falha ao sintetizar chime: ", e);
+      }
+    }
+
+    // Explosão Visual de Corações e Sinos Mágicos
+    function explodeHeartsAndSounds() {
+      // Sons combinados
+      playMagicalChime(300, 1200, 0.6, 0.35);
+      setTimeout(() => playMagicalChime(500, 1500, 0.5, 0.2), 150);
+
+      // Partículas coloridas na tela
+      const colors = ['#FF6B9D', '#C44569', '#FFB6C1', '#FF1493', '#FF69B4', '#FFC0CB', '#FFD700'];
+      const shapes = ['❤️', '💖', '💕', '💗', '💝', '💘', '✨', '🌟', '🌸'];
+      
+      for (let i = 0; i < 70; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'confetti-piece';
+          el.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+          el.style.left = '50%';
+          el.style.top = '50%';
+          el.style.fontSize = (Math.random() * 25 + 15) + 'px';
+          el.style.color = colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(el);
+
+          const angle = Math.random() * Math.PI * 2;
+          const velocity = Math.random() * 450 + 200;
+          const vx = Math.cos(angle) * velocity;
+          const vy = Math.sin(angle) * velocity - 250;
+          
+          let x = window.innerWidth / 2;
+          let y = window.innerHeight / 2 + window.scrollY;
+          let opacity = 1;
+
+          const anim = setInterval(() => {
+            x += vx * 0.02;
+            y += vy * 0.02 + 4.5;
+            opacity -= 0.015;
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.opacity = opacity;
+            el.style.transform = `rotate(${Math.random() * 360}deg) scale(${opacity})`;
+
+            if (opacity <= 0) {
+              clearInterval(anim);
+              el.remove();
+            }
+          }, 16);
+        }, i * 15);
+      }
+
+      const btn = document.getElementById('loveButton');
+      btn.innerHTML = '<span>💖</span> Eu Te Amo Infinitamente!';
+      btn.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+      btn.style.color = '#8B3A5B';
+    }
+
+    // Canvas de Partículas Flutuantes do Fundo
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const particles = [];
+    const particleCount = 45;
+
+    class Particle {
+      constructor() {
+        this.reset();
+        this.y = Math.random() * canvas.height;
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 20;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = -(Math.random() * 0.8 + 0.3);
+        this.color = `rgba(255, ${Math.floor(Math.random() * 80 + 175)}, ${Math.floor(Math.random() * 80 + 175)}, ${Math.random() * 0.25 + 0.08})`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Corações flutuantes decorativos no Hero
+    const heartsContainer = document.getElementById('floating-hearts');
+    const heartSymbols = ['❤️', '💖', '💕', '💗', '💝', '💘'];
+    function createFloatingHeart() {
+      if (!heartsContainer) return;
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      heart.style.fontSize = (Math.random() * 1.3 + 0.9) + 'rem';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 11000);
+    }
+    setInterval(createFloatingHeart, 1000);
+    for (let i = 0; i < 6; i++) createFloatingHeart();
+
+    // Inicialização ao carregar a página
+    window.addEventListener('DOMContentLoaded', () => {
+      loadConfig();
+      setInterval(updateCounter, 1000);
+    });
+  </script>
+</body>
+</html>
